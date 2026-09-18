@@ -1138,8 +1138,11 @@
           requestAnimationFrame(function(){ inp.focus(); inp.select(); });
         }
       });
-      delayPop.addEventListener('mousedown', function(e){ e.stopPropagation(); });
       var delayInput = delayPop.querySelector('.delay-input');
+      delayPop.addEventListener('mousedown', function(e){
+        e.stopPropagation();
+        if(e.target !== delayInput) e.preventDefault();
+      });
       function commitDelay(){
         var v = parseInt(delayInput.value, 10);
         node.delayValue = (isFinite(v) && v>=1) ? v : node.delayValue;
@@ -1149,6 +1152,7 @@
       delayInput.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); commitDelay(); } });
       delayInput.addEventListener('blur', commitDelay);
       delayPop.querySelectorAll('.unit-btn').forEach(function(btn){
+        btn.addEventListener('mousedown', function(e){ e.preventDefault(); e.stopPropagation(); });
         btn.addEventListener('click', function(e){
           e.stopPropagation();
           node.delayUnit = btn.getAttribute('data-u');
