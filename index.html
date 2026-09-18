@@ -965,10 +965,8 @@
   function mockupContentHtml(node){
     if(node.type==='checkout' || node.type==='upsell' || node.type==='downsell'){
       var ctaClass = node.type==='checkout' ? 'green' : node.type==='upsell' ? 'amber' : 'downsell';
-      var ctaText = node.type==='checkout' ? 'Comprar' : node.type==='upsell' ? 'Sim, eu quero!' : 'Aceitar desconto';
       return '<div class="progress '+ctaClass+'"></div>' +
-        '<div class="price-row"><span class="price" contenteditable="true" spellcheck="false">'+fmtMoney(node.price)+'</span></div>' +
-        '<div class="cta '+ctaClass+'">'+ctaText+'</div>';
+        '<div class="price-row"><span class="price" contenteditable="true" spellcheck="false">'+fmtMoney(node.price)+'</span></div>';
     }
     if(node.type==='webinar'){
       return '<div class="thumb"><span class="live-tag">AO VIVO</span><span class="play"></span></div>' +
